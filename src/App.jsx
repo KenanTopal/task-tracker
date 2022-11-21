@@ -1,54 +1,51 @@
-
-import { dividerClasses } from '@mui/material';
-import { Container } from '@mui/system';
 import { useState } from 'react';
-import './App.css';
-import Navigation from './components/Navigation';
-import TaskForm from './components/TaskForm';
+import { Container } from "@mui/material";
+import Navigation from "./components/Navigation";
+
+
 import TaskList from './components/TaskList';
-
-
-
+import TaskForm from './components/TaskForm';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [show, setShow] = useState(false)
-  //Toggle
-  const toggleComplete = (id) => {
-    // find the index of the task ind the tasks array
-    let index = tasks.findIndex(task=> task.id === id);
-    // make a copy of the tasks
-    let updatedTasks = [...tasks]
+  const [show, setShow] = useState(false);
+  
+  // Toggle task complete 
+  const toggleComplete = (id) => { 
+    // find the index of the task in the tasks array
+    let index = tasks.findIndex(task => task.id === id); 
+    // make a copy of the tasks 
+    let updatedTasks = [...tasks];
     // toggle the isComplete property
-    updatedTasks[index].isCompleted = !updatedTasks[index].isComplete
+    updatedTasks[index].isCompleted = !updatedTasks[index].isCompleted
     setTasks(updatedTasks);
   }
 
-  //Delete Task
-  const removeTask = (id) =>{
+  // Delete task
+  const removeTask = (id) => { 
     let updatedTasks = tasks.filter(task => task.id !== id);
     setTasks(updatedTasks)
   }
 
-  //toggle Add Form
-  const toggleForm = () => {
+  // toggle Add Form 
+  const toggleForm = () => { 
     // setShow(!show)
     setShow((prevState)=> !prevState)
   }
 
   // Add a task
-  const addNewTask = (task) => {
+  const addNewTask = (task) => { 
     let updatedTasks = [...tasks];
     updatedTasks.unshift(task);
-    setTasks(updatedTasks)
+    setTasks(updatedTasks);
   }
 
   return (
     <div>
-      <Navigation show={show} toggleForm={toggleForm}/>
-      <Container maxWidth="md">
-        {show && <TaskForm addNewTask={addNewTask} />}
-        <TaskList tasks={tasks} toggleComplete={toggleComplete} removeTask={removeTask}/>
+      <Navigation show={ show } toggleForm={toggleForm } />
+      <Container maxWidth="sm">
+        { show && <TaskForm addNewTask={addNewTask } /> }
+        <TaskList tasks={ tasks } toggleComplete={ toggleComplete } removeTask={ removeTask} />
       </Container>
     </div>
   );
