@@ -1,6 +1,6 @@
 import { Checkbox, ListItem, ListItemText, IconButton, Tooltip } from '@mui/material';
 import { MdCheckCircle, MdOutlineCircle, MdDelete } from "react-icons/md";
-import './TaskItem.css';
+import './TaskItem.scss';
 
 const TaskItem = ({ task, onComplete, onDelete}) => {
 
